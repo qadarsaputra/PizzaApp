@@ -14,9 +14,10 @@ class AboutActivity : AppCompatActivity() {
         val imgCall:ImageView = findViewById(R.id.imageviewcall)
 
         imgCall.setOnClickListener {
-            val callIntent:Intent = Uri.parse("tel:085155163678").let {
-               val number > Intent(Intent.ACTION_DIAL,number)
+            val callIntent:Intent = Uri.parse("tel : 08129713865").let {
+                number-> Intent(Intent.ACTION_DIAL, number)
+                }
+            startActivity(callIntent)
             }
         }
     }
-}
