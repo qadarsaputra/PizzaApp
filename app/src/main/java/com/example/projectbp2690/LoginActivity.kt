@@ -16,12 +16,16 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin:Button = findViewById(R.id.buttonlogin)
         val txtUsername:EditText = findViewById(R.id.username)
         val txtPassword:EditText = findViewById(R.id.passwords)
+        val LogModel = LoginModel()
 
         btnLogin.setOnClickListener{
 
-            if(txtUsername.text.toString().equals("Qadar") && txtPassword.text.toString().equals("amikom")) {
-                val intentHome = Intent(this, HomeActivity::class.java)
-                startActivity(intentHome)
+            LogModel.username = txtUsername.text.toString()
+            LogModel.password = txtPassword.text.toString()
+
+            if(LogModel.loginCek() == true) {
+               val intentHome = Intent(this,HomeActivity::class.java)
+                startActivity(IntentHome)
             }
 
             else {
