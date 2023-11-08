@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
-class DatabaseHelper(context: Context, DATABASE_NAME: String?, DATABASE: Int, DATABASE_VERSION: Int): SQLiteOpenHelper(
+class DatabaseHelper(context: Context, ): SQLiteOpenHelper(
     context,DATABASE_NAME, null,DATABASE_VERSION
 ){
     companion object {
@@ -17,13 +17,18 @@ class DatabaseHelper(context: Context, DATABASE_NAME: String?, DATABASE: Int, DA
     private val COLUMN_PASSWORD = "password"
     }
 
-    private val CREATE_ACCOUNT_TABLE =
+    private val CREATE_ACCOUNT_TABLE = ("CREATE TABLE" + TABLE_ACCOUNT + "("
+            + COLUMN_EMAIL + " TEXT PRIMARY KEY, "+ COLUMN_NAME +" TEXT, "
+            + COLUMN_LEVEL + " TEXT, "+ COLUMN_PASSWORD +" TEXT)")
+
+    private val DROP_ACCOUNT_TABLE = "DROP TABLE IF EXISTS $TABLE_ACCOUNT"
 
     override fun onCreate(p0: SQLiteDatabase?) {
-        TODO("Not yet implemented")
+        p0?.execSQL(CREATE_ACCOUNT_TABLE)
     }
 
     override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-        TODO("Not yet implemented")
+        p0?.execSQL(DROP_ACCOUNT_TABLE)
+        onCreate(p0)
     }
 }
