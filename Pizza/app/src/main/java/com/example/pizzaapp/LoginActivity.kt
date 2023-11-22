@@ -22,8 +22,11 @@ class LoginActivity : AppCompatActivity() {
 
         //event button login
         btnLogin.setOnClickListener {
-            val dbHelper = DatabaseHelper(this)
-            var result:Boolean = dbHelper.checkLogin(txtUsername.text.toString()), txtPass
+            val databaseHelper = DatabaseHelper(this)
+
+            val email =  txtUsername.text.toString().trim()
+            val password = txtPassword.text.toString().trim()
+            var result:Boolean = databaseHelper.checkLogin(email, password)
             val intentLogin = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intentLogin)
         }
